@@ -35,12 +35,20 @@ jobs:
 
 
     -  name: try to login from runner to docker hub account
-       run:  |
-         docker login -u rajsumit2024 -p Cerelia@2024
-         docker tag rajwebui:v1 docker.io/dockerashu/rajwebui.docker.io/rajsumit2024/rajwebui.version1
-         #above command to make an alias of image to docker hub format
-         docker push docker.io/rajsumit2024/rajwebui:version1
-         docker logout
+       uses: docker/login-action@v3
+       with: 
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+
+    -  name: rebuild image in docker hub format and push it to docker hub
+       run :  |
+       echo "this is home work"
+       echo "pls find some action workflow"
+       echo "build image in docker hub format and push also"
+
+
+       
 
 
 
