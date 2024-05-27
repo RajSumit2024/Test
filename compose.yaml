@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  rajwebui:
+    image: rajwebui:v1
+    build: .
+    container_name: src1
+    ports:
+      - 1234:80
