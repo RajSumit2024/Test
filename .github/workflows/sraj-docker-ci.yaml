@@ -1,0 +1,23 @@
+# create pipeline with some name
+name: raj app conatinerization pipeline
+# Trigger -- when this pipeline should start
+on: 
+  push:
+    branches:
+      - "main"
+
+# jobs for performing operation
+jobs:
+  raj-image-build: 
+    runs-on: ubuntu-latest
+    # this server will be provision by github backen for this job
+    steps:
+      -  name: run some basic command on above server to do some verification
+         run:  |
+           uname -r
+           whoami
+           cat /etc/os-/etc/os-release
+           docker version
+           docker-compose version
+
+          
