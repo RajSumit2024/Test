@@ -41,7 +41,7 @@ jobs:
       with:
         context: . #location of Dockerfile
         push: true
-        tags: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rajwebui:uiversion1
+        tags: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/test:uiversion1
 
     - name: docker logout from pushing image
       run : docker logout
