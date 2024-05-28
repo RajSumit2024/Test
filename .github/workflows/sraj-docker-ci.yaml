@@ -39,8 +39,13 @@ jobs:
     - name: rebuild image in docker hub format and push it to docker hub
       uses: docker/build-push-action@v5
       with:
+        context: . #location of Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/test:latest
+        tags: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/rajwebui:uiversion1
+
+    - name: docker logout from pushing image
+      run : docker logout
+
 
 
 
