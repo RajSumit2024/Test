@@ -1,3 +1,3 @@
 FROM nginx
 LABEL name="Sumit"
-COPY health.html /usr/share/nginx/html
+COPY . /usr/share/nginx/html
