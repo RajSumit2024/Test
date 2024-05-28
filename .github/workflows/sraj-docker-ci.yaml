@@ -37,12 +37,10 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: rebuild image in docker hub format and push it to docker hub
-
-      run: |
-        echo "this is home work"
-        echo "pls find some action workflow"
-        echo "build image in docker hub format and push also"
-
+      uses: docker/build-push-action@v5
+      with:
+          push: true
+     
 
 
 
