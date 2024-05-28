@@ -39,9 +39,9 @@ jobs:
     - name: rebuild image in docker hub format and push it to docker hub
       uses: docker/build-push-action@v5
       with:
-          push: true
-          tags: username/Test:latest
-     
+        push: true
+        tags: username/rajwebui:latest
+
 
 
 
