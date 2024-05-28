@@ -28,7 +28,7 @@ jobs:
       with:
         projectBaseDir: .
         args: >
-          -Dsonar.projectkey=raj-python-project
+          -Dsonar.projectKey=raj-python-project
       
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
