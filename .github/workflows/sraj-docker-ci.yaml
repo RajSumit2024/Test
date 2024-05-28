@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@v2 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+      uses: raj-python-project/sonarqube-scan-action@v2 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
