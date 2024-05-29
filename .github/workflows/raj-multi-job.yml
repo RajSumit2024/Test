@@ -41,15 +41,7 @@ jobs:
         docker version
         docker-compose version
 
-    - name: Push to ECR
-      id: ecr
-      uses: jwalton/gh-ecr-push@v2
-      with:
-        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        region: us-east-1
-        image: 751136288263.dkr.ecr.us-east-1.amazonaws.com/bmo-webui-app:rajappv1
-
+    
     - name: downloading artifacts
 
       uses: actions/download-artifact@v4
@@ -64,3 +56,12 @@ jobs:
         docker-compose ps
     - name: trying to access health-check
       run: "curl -f http://localhost:1234/health.html"
+    
+    - name: ecr-publish
+      uses: bitovi/github-actions-ecr-publish@v0.1.0
+      with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_default_region: us-east-1
+          aws_ecr_repo_name: bmo-webui-app
+          image_tag: rajappv1github
