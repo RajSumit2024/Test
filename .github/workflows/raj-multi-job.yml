@@ -32,7 +32,7 @@ jobs:
       - name: using local sonar-scanner
         run:  |
           pwd
-          sonar-scanner -D"sonar.projectKey=ashu-python-project" -D"sonar.sources=." -D"sonar.host.url=${{ vars.SONAR_HOST_URL }}" -D"sonar.token=${{ secrets.SONAR_TOKEN }}"   
+          sonar-scanner -D"sonar.projectKey=raj-python-project" -D"sonar.sources=." -D"sonar.host.url=${{ vars.SONAR_HOST_URL }}" -D"sonar.token=${{ secrets.SONAR_TOKEN }}"   
 
   raj-build-job:
     runs-on: macos-latest
