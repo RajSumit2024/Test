@@ -56,6 +56,17 @@ jobs:
         docker-compose ps
     - name: trying to access health-check
       run: "curl -f http://localhost:1234/health.html"
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+    - name: installling package
+      run: |
+        npm -v
+        node -v 
+        cd ecr 
+        npm install
     
     - name: ecr-publish
       uses: bitovi/github-actions-ecr-publish@v0.1.0
@@ -63,5 +74,5 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_default_region: us-east-1
-          aws_ecr_repo_name: rajsumit2024/bmo-webui-app
+          aws_ecr_repo_name: bmo-webui-app
           image_tag: rajappv1github
