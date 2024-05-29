@@ -57,10 +57,11 @@ jobs:
     - name: trying to access health-check
       run: "curl -f http://localhost:1234/health.html"
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20'
+    - name: set lower case owner name
+      run: |
+        echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
+      env:
+        OWNER: '${{ github.repository_owner }}'
     
     - name: ecr-publish
       uses: bitovi/github-actions-ecr-publish@v0.1.0
