@@ -18,21 +18,20 @@ jobs:
       - name: fetch git code
         uses: actions/checkout@v4
 
-      #- name: SonarQube Scan
-       # uses: SonarSource/sonarqube-scan-action@v2.1.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
-        #with:
-         # projectBaseDir: .
-          #args: >
-           # -Dsonar.projectKey=raj-python-project
       
-        #env:
-          #SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          #SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-
       - name: using local sonar-scanner
         run:  |
           pwd
           sonar-scanner -D"sonar.projectKey=raj-python-project" -D"sonar.sources=." -D"sonar.host.url=${{ vars.SONAR_HOST_URL }}" -D"sonar.token=${{ secrets.SONAR_TOKEN }}"   
+      - name: using upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: raj-artifact
+          path:  |
+            .
+            !**/.git*
+            !**/*.md
+
 
   raj-build-job:
     runs-on: macos-latest
@@ -40,5 +39,19 @@ jobs:
     steps:
       - name: just check general message
         run:  |
-          echo "python version checking"
-          python -V
+          echo "docker related details"
+          docker version
+          docker-compose version
+      - name: downloading artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: raj-artifact
+          path: .
+      - name : docker compose to build and test
+        run:  |
+          ls -a
+          docker-compose up -d
+          sleep 2
+          docker-compose ps
+      - name: trying to access health-check
+        run: "curl -f http://localhost:1234/health.html"
