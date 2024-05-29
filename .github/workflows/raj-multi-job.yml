@@ -43,7 +43,7 @@ jobs:
 
     - name: Push to ECR
       id: ecr
-      uses: bmo-webui-app/gh-ecr-push@v2
+      uses: jwalton/gh-ecr-push@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
