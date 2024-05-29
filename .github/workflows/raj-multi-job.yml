@@ -57,7 +57,7 @@ jobs:
     - name: trying to access health-check
       run: "curl -f http://localhost:1234/health.html"
 
-    - name: set lower case owner name
+    - name: set lower case owner name 
       run: |
         echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
       env:
