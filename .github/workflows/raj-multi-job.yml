@@ -7,20 +7,28 @@ on:
 
 # creating multiple jobs
 jobs:
-  raj-code-checkjob:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checking only
-        run:  |
-          whoami
   raj-sast-job:
     runs-on: self-hosted
-    needs: raj-code-checkjob # it will wait for job1 to get finished
     steps:
       - name: checking docker version and sonarscanner
         run:  |
           pwd
           whoami
+          sonar-scanner --version
+      - name: fetch git code
+        uses: actions/checkout@v4
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v2.1.0 # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=raj-python-project
+      
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          
   raj-build-job:
     runs-on: macos-latest
     needs: raj-sast-job # it will wait for SAST job to finish
