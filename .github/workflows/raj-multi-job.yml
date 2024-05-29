@@ -61,7 +61,7 @@ jobs:
       run: |
         echo "OWNER_LC=${OWNER,,}" >>${GITHUB_ENV}
       env:
-        OWNER: '${{ github.repository_owner }}'
+        OWNER: '${{ OWNER_LC }}'
     
     - name: ecr-publish
       uses: bitovi/github-actions-ecr-publish@v0.1.0
