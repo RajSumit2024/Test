@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: checking docker version and sonarscanner
         run:  |
-          docker version
-          sonar-scanner --version
+          pwd
+          whoami
   raj-build-job:
     runs-on: macos-latest
     needs: raj-sast-job # it will wait for SAST job to finish
