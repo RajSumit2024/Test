@@ -14,7 +14,7 @@ jobs:
         run:  |
           whoami
   raj-sast-job:
-    runs-on: windows-latest
+    runs-on: self-hosted
     needs: raj-code-checkjob # it will wait for job1 to get finished
     steps:
       - name: checking docker version and sonarscanner
