@@ -34,7 +34,7 @@ jobs:
 
 
   raj-build-job:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     needs: raj-sast-job # it will wait for SAST job to finish
     steps:
       - name: just check general message
